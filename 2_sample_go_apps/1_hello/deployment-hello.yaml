@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-app
+  template:
+    metadata:
+      labels:
+        app: hello-app
+    spec:
+      containers:
+      - image: localhost:32000/hello-app-image
+        name: hello-app
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
